@@ -92,7 +92,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           Container(
             height: 220,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: const Color(0xFF69c5df),
@@ -100,6 +100,36 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 image: AssetImage('assets/image/food0.png'),
                 fit: BoxFit.cover,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFFe8e8e8),
+                  blurRadius: 5,
+                  offset: (_currPageValue == index)
+                      ? const Offset(0, 5)
+                      : const Offset(0, 2),
+                ),
+                BoxShadow(
+                  color: const Color(0xFFe8e8e8),
+                  blurRadius: 5,
+                  offset: (_currPageValue == index)
+                      ? const Offset(-5, 0)
+                      : const Offset(-2, 0),
+                ),
+                BoxShadow(
+                  color: const Color(0xFFe8e8e8),
+                  blurRadius: 5,
+                  offset: (_currPageValue == index)
+                      ? const Offset(5, 0)
+                      : const Offset(2, 0),
+                ),
+                BoxShadow(
+                  color: const Color(0xFFe8e8e8),
+                  blurRadius: 5,
+                  offset: (_currPageValue == index)
+                      ? const Offset(0, -5)
+                      : const Offset(0, -2),
+                )
+              ],
             ),
           ),
           Align(
