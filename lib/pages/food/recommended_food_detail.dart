@@ -4,7 +4,6 @@ import 'package:food_app/utils/dummytext.dart';
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text.dart';
-
 import '../../utils/dimensions.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
