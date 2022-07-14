@@ -4,6 +4,7 @@ import 'package:food_app/utils/dimensions.dart';
 
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
+import 'package:food_app/widgets/expandable_text.dart';
 import 'package:food_app/widgets/food_info_column.dart';
 
 class PopularFoodDetail extends StatelessWidget {
@@ -60,6 +61,13 @@ class PopularFoodDetail extends StatelessWidget {
                   const FoodInfoColumn(),
                   SizedBox(height: Dimensions.height20),
                   BigText(text: "Introduction"),
+                  SizedBox(height: Dimensions.height10),
+                  const Expanded(
+                      child: SingleChildScrollView(
+                    child: ExpandableTextWidget(
+                        text:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Quam adipiscing vitae proin sagittis. Ultrices gravida dictum fusce ut placerat orci. Ac turpis egestas maecenas pharetra. At auctor urna nunc id cursus. Condimentum lacinia quis vel eros donec. In nisl nisi scelerisque eu ultrices vitae auctor. Id semper risus in hendrerit. Vitae auctor eu augue ut lectus arcu bibendum at varius. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Velit ut tortor pretium viverra. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Sit amet nulla facilisi morbi tempus iaculis. Egestas diam in arcu cursus euismod quis viverra. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Sit amet nulla facilisi morbi tempus iaculis. Egestas diam in arcu cursus euismod quis viverra. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Sit amet nulla facilisi morbi tempus iaculis. Egestas diam in arcu cursus euismod quis viverra. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Sit amet nulla facilisi morbi tempus iaculis. Egestas diam in arcu cursus euismod quis viverra."),
+                  )),
                 ],
               ),
             ),
