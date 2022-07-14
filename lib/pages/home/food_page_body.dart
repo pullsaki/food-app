@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/big_text.dart';
-import 'package:food_app/widgets/icon_text.dart';
+import 'package:food_app/widgets/food_info_column.dart';
+import 'package:food_app/widgets/icon_text_row.dart';
 import 'package:food_app/widgets/small_text.dart';
 
 class FoodPageBody extends StatefulWidget {
@@ -139,24 +140,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               SizedBox(height: Dimensions.height10),
                               SmallText(text: "With Chinese authenticity"),
                               SizedBox(height: Dimensions.height10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  IconTextWidget(
-                                      icon: Icons.circle_sharp,
-                                      text: "Normal",
-                                      iconColor: AppColors.iconColor1),
-                                  IconTextWidget(
-                                      icon: Icons.location_on,
-                                      text: "1.7 km",
-                                      iconColor: AppColors.maincolor),
-                                  IconTextWidget(
-                                      icon: Icons.access_time_rounded,
-                                      text: "32min",
-                                      iconColor: AppColors.iconColor2),
-                                ],
-                              ),
+                              const IconTextRow(),
                             ],
                           ),
                         ),
@@ -258,48 +242,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     top: Dimensions.height15,
                     left: Dimensions.width15,
                     right: Dimensions.width15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "Food Item Name"),
-                    SizedBox(height: Dimensions.height10),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                              5,
-                              (index) => Icon(Icons.star,
-                                  color: AppColors.maincolor,
-                                  size: Dimensions.height15)),
-                        ),
-                        SizedBox(width: Dimensions.width10),
-                        SmallText(text: "4.5"),
-                        SizedBox(width: Dimensions.width10),
-                        SmallText(text: "1287"),
-                        SizedBox(width: Dimensions.width5),
-                        SmallText(text: "Reviews"),
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        IconTextWidget(
-                            icon: Icons.circle_sharp,
-                            text: "Normal",
-                            iconColor: AppColors.iconColor1),
-                        IconTextWidget(
-                            icon: Icons.location_on,
-                            text: "1.7 km",
-                            iconColor: AppColors.maincolor),
-                        IconTextWidget(
-                            icon: Icons.access_time_rounded,
-                            text: "32min",
-                            iconColor: AppColors.iconColor2),
-                      ],
-                    ),
-                  ],
-                ),
+                child: const FoodInfoColumn(),
               ),
             ),
           ),
