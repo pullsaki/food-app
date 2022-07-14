@@ -58,6 +58,112 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(Dimensions.radius5))),
         ),
+        SizedBox(height: Dimensions.height30),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(
+                  text: ".",
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(text: "Food pairing"),
+              ),
+            ],
+          ),
+        ),
+        ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Container(
+                  margin: EdgeInsets.only(
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                      bottom: Dimensions.height10),
+                  child: Row(children: [
+                    Container(
+                      width: Dimensions.listViewImageSize,
+                      height: Dimensions.listViewImageSize,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20),
+                        color: Colors.white38,
+                        image: const DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/image/food0.png"),
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color(0xFFe8e8e8),
+                              blurRadius: 5,
+                              offset: Offset(0, 7)),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.listViewTextContSize,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(Dimensions.radius20),
+                              bottomRight:
+                                  Radius.circular(Dimensions.radius20)),
+                          color: Colors.white,
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color(0xFFe8e8e8),
+                                blurRadius: 5,
+                                offset: Offset(0, 5)),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: Dimensions.width10,
+                              right: Dimensions.width10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              BigText(text: "Nutritious fruit Meal in China"),
+                              SizedBox(height: Dimensions.height10),
+                              SmallText(text: "With Chinese authenticity"),
+                              SizedBox(height: Dimensions.height10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  IconTextWidget(
+                                      icon: Icons.circle_sharp,
+                                      text: "Normal",
+                                      iconColor: AppColors.iconColor1),
+                                  IconTextWidget(
+                                      icon: Icons.location_on,
+                                      text: "1.7 km",
+                                      iconColor: AppColors.maincolor),
+                                  IconTextWidget(
+                                      icon: Icons.access_time_rounded,
+                                      text: "32min",
+                                      iconColor: AppColors.iconColor2),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ]));
+            })
       ],
     );
   }
