@@ -45,4 +45,7 @@ class Dimensions {
   static double popularImageSize = screenHeight / 2.41;
 
   static double bottomHeight = screenHeight / 7.03;
+
+  static double recommendedImageSize = screenHeight / 2.81;
+  static double recommendedToolBarSize = screenHeight / 11.25;
 }
