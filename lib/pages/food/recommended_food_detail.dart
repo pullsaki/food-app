@@ -1,27 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/recommended_product_controller.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
-import 'package:food_app/utils/dummytext.dart';
+import 'package:food_app/utils/constants.dart';
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text.dart';
-import '../../utils/dimensions.dart';
+import 'package:get/get.dart';
+import 'package:food_app/utils/dimensions.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const RecommendedFoodDetail({Key? key, required this.pageId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var recommendedProduct =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: Dimensions.recommendedToolBarSize,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.clear),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: const AppIcon(icon: Icons.clear),
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
             bottom: PreferredSize(
@@ -37,7 +50,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 child: Center(
                     child: BigText(
-                  text: "Sliver App Bar",
+                  text: recommendedProduct.name!,
                   size: Dimensions.font26,
                 )),
               ),
@@ -46,8 +59,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: Dimensions.recommendedImageSize,
             flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-              "assets/image/food0.png",
+                background: Image.network(
+              '${Constants.appBaseUrl}/uploads/${recommendedProduct.img}',
               width: double.maxFinite,
               fit: BoxFit.cover,
             )),
@@ -58,7 +71,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                   child: ExpandableTextWidget(
-                      text: "${DummyText.value}\n${DummyText.value}\n"),
+                      text: recommendedProduct.description!),
                 ),
               ],
             ),
@@ -81,7 +94,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     backgroundColor: AppColors.maincolor,
                     iconcolor: Colors.white),
                 BigText(
-                    text: "₹12.99 X 0",
+                    text: "₹${recommendedProduct.price} X 0",
                     color: AppColors.mainBlackColor,
                     size: Dimensions.font26),
                 // ),
@@ -123,8 +136,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.maincolor,
                   ),
-                  child:
-                      BigText(text: "₹ 10 | Add to Cart", color: Colors.white),
+                  child: BigText(
+                      text: "₹ ${recommendedProduct.price}| Add to Cart",
+                      color: Colors.white),
                 )
               ],
             ),

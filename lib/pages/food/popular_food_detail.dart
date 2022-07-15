@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/popular_product_controller.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
-import 'package:food_app/utils/dummytext.dart';
-
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text.dart';
 import 'package:food_app/widgets/food_info_column.dart';
+import 'package:get/get.dart';
+import 'package:food_app/utils/constants.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var popularProduct =
+        Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -23,10 +28,11 @@ class PopularFoodDetail extends StatelessWidget {
               child: Container(
                 width: double.maxFinite,
                 height: Dimensions.popularImageSize,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/image/food0.png"),
+                  image: NetworkImage(
+                      '${Constants.appBaseUrl}/uploads/${popularProduct.img}'),
                 )),
               )),
           Positioned(
@@ -35,9 +41,14 @@ class PopularFoodDetail extends StatelessWidget {
             right: Dimensions.width20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.arrow_back_ios_new),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: const AppIcon(icon: Icons.arrow_back_ios_new),
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
           ),
@@ -59,13 +70,14 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const FoodInfoColumn(),
+                  FoodInfoColumn(text: popularProduct.name!),
                   SizedBox(height: Dimensions.height20),
-                  BigText(text: "Introduction"),
+                  BigText(text: "Description"),
                   SizedBox(height: Dimensions.height10),
                   Expanded(
                       child: SingleChildScrollView(
-                    child: ExpandableTextWidget(text: DummyText.value),
+                    child:
+                        ExpandableTextWidget(text: popularProduct.description!),
                   )),
                 ],
               ),
@@ -110,7 +122,9 @@ class PopularFoodDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.maincolor,
               ),
-              child: BigText(text: "₹ 10 | Add to Cart", color: Colors.white),
+              child: BigText(
+                  text: "₹ ${popularProduct.price} | Add to Cart",
+                  color: Colors.white),
             )
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/controllers/popular_product_controller.dart';
 import 'package:food_app/controllers/recommended_product_controller.dart';
 import 'package:food_app/models/products_model.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/constants.dart';
 import 'package:food_app/utils/dimensions.dart';
@@ -103,72 +104,78 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   shrinkWrap: true,
                   itemCount: recommendedProducts.recommendedProductList.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                        margin: EdgeInsets.only(
-                            left: Dimensions.width20,
-                            right: Dimensions.width20,
-                            bottom: Dimensions.height10),
-                        child: Row(children: [
-                          Container(
-                            width: Dimensions.listViewImageSize,
-                            height: Dimensions.listViewImageSize,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius20),
-                              color: Colors.white38,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "${Constants.appBaseUrl}/uploads/${recommendedProducts.recommendedProductList[index].img!}"),
-                              ),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Color(0xFFe8e8e8),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 7)),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: Dimensions.listViewTextContSize,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topRight:
-                                        Radius.circular(Dimensions.radius20),
-                                    bottomRight:
-                                        Radius.circular(Dimensions.radius20)),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color(0xFFe8e8e8),
-                                      blurRadius: 5,
-                                      offset: Offset(0, 5)),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: Dimensions.width10,
-                                    right: Dimensions.width10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    BigText(
-                                        text: recommendedProducts
-                                            .recommendedProductList[index]
-                                            .name!),
-                                    SizedBox(height: Dimensions.height10),
-                                    SmallText(
-                                        text: "With Chinese authenticity"),
-                                    SizedBox(height: Dimensions.height10),
-                                    const IconTextRow(),
+                    return GestureDetector(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getRecommendedFood(index));
+                        },
+                        child: Container(
+                            margin: EdgeInsets.only(
+                                left: Dimensions.width20,
+                                right: Dimensions.width20,
+                                bottom: Dimensions.height10),
+                            child: Row(children: [
+                              Container(
+                                width: Dimensions.listViewImageSize,
+                                height: Dimensions.listViewImageSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius20),
+                                  color: Colors.white38,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                        "${Constants.appBaseUrl}/uploads/${recommendedProducts.recommendedProductList[index].img!}"),
+                                  ),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Color(0xFFe8e8e8),
+                                        blurRadius: 5,
+                                        offset: Offset(0, 7)),
                                   ],
                                 ),
                               ),
-                            ),
-                          )
-                        ]));
+                              Expanded(
+                                child: Container(
+                                  height: Dimensions.listViewTextContSize,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(
+                                            Dimensions.radius20),
+                                        bottomRight: Radius.circular(
+                                            Dimensions.radius20)),
+                                    color: Colors.white,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color(0xFFe8e8e8),
+                                          blurRadius: 5,
+                                          offset: Offset(0, 5)),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: Dimensions.width10,
+                                        right: Dimensions.width10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        BigText(
+                                            text: recommendedProducts
+                                                .recommendedProductList[index]
+                                                .name!),
+                                        SizedBox(height: Dimensions.height10),
+                                        SmallText(
+                                            text: "With Chinese authenticity"),
+                                        SizedBox(height: Dimensions.height10),
+                                        const IconTextRow(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])));
                   })
               : const CircularProgressIndicator(color: AppColors.maincolor);
         })
@@ -205,40 +212,45 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: Dimensions.pageViewContainer,
-            margin: EdgeInsets.symmetric(
-                horizontal: Dimensions.width10, vertical: Dimensions.height5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius25),
-              image: DecorationImage(
-                image: NetworkImage(
-                    "${Constants.appBaseUrl}/uploads/${popularProduct.img!}"),
-                fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(RouteHelper.getPopularFood(index));
+            },
+            child: Container(
+              height: Dimensions.pageViewContainer,
+              margin: EdgeInsets.symmetric(
+                  horizontal: Dimensions.width10, vertical: Dimensions.height5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius25),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "${Constants.appBaseUrl}/uploads/${popularProduct.img!}"),
+                  fit: BoxFit.cover,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFe8e8e8),
+                    blurRadius: 10,
+                    offset: (_currPageValue == index)
+                        ? const Offset(0, 5)
+                        : const Offset(0, 2),
+                  ),
+                  BoxShadow(
+                    color: const Color(0xFFe8e8e8),
+                    blurRadius: 10,
+                    offset: (_currPageValue == index)
+                        ? const Offset(-5, 5)
+                        : const Offset(-2, 5),
+                  ),
+                  BoxShadow(
+                    color: const Color(0xFFe8e8e8),
+                    blurRadius: 10,
+                    offset: (_currPageValue == index)
+                        ? const Offset(5, 5)
+                        : const Offset(2, 5),
+                  ),
+                ],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFe8e8e8),
-                  blurRadius: 10,
-                  offset: (_currPageValue == index)
-                      ? const Offset(0, 5)
-                      : const Offset(0, 2),
-                ),
-                BoxShadow(
-                  color: const Color(0xFFe8e8e8),
-                  blurRadius: 10,
-                  offset: (_currPageValue == index)
-                      ? const Offset(-5, 5)
-                      : const Offset(-2, 5),
-                ),
-                BoxShadow(
-                  color: const Color(0xFFe8e8e8),
-                  blurRadius: 10,
-                  offset: (_currPageValue == index)
-                      ? const Offset(5, 5)
-                      : const Offset(2, 5),
-                ),
-              ],
             ),
           ),
           Align(
