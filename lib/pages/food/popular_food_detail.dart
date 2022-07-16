@@ -143,7 +143,9 @@ class PopularFoodDetail extends StatelessWidget {
                       color: AppColors.mainColor,
                     ),
                     child: BigText(
-                        text: (popularProduct.inCartItems == 0)
+                        text: (popularProduct.inCartItems -
+                                    popularProduct.quantity ==
+                                0)
                             ? "₹${(popularProduct.quantity * product.price!)} | Add to Cart"
                             : "₹${(popularProduct.inCartItems * product.price!)} | Update Cart",
                         color: Colors.white),
