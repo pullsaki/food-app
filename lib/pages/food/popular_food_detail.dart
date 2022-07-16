@@ -8,7 +8,6 @@ import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text.dart';
 import 'package:food_app/widgets/food_info_column.dart';
-import 'package:food_app/widgets/small_text.dart';
 import 'package:get/get.dart';
 import 'package:food_app/utils/constants.dart';
 
@@ -55,10 +54,16 @@ class PopularFoodDetail extends StatelessWidget {
                   child: const AppIcon(icon: Icons.arrow_back_ios_new),
                 ),
                 GetBuilder<PopularProductController>(
-                    builder: ((controller) => Stack(
+                    builder: ((controller) => GestureDetector(
+                        onTap: () {
+                          if (controller.totalItems > 0) {
+                            Get.toNamed(RouteHelper.getCart());
+                          }
+                        },
+                        child: Stack(
                           children: [
                             const AppIcon(icon: Icons.shopping_cart_outlined),
-                            Get.find<PopularProductController>().totalItems >= 1
+                            controller.totalItems >= 1
                                 ? Positioned(
                                     right: 0,
                                     top: 0,
@@ -68,18 +73,17 @@ class PopularFoodDetail extends StatelessWidget {
                                         iconcolor: Colors.transparent,
                                         backgroundColor: AppColors.mainColor))
                                 : Container(),
-                            Get.find<PopularProductController>().totalItems >= 1
+                            controller.totalItems >= 1
                                 ? Positioned(
                                     right: Dimensions.width5 / 2,
                                     top: Dimensions.height5 / 2,
                                     child: BigText(
-                                        text:
-                                            '${Get.find<PopularProductController>().totalItems}',
+                                        text: '${controller.totalItems}',
                                         size: Dimensions.font12,
                                         color: Colors.white))
                                 : Container(),
                           ],
-                        )))
+                        )))),
               ],
             ),
           ),

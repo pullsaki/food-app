@@ -27,6 +27,7 @@ class CartController extends GetxController {
           img: value.img,
           isExist: value.isExist,
           time: value.time,
+          product: value.product,
         );
       });
 
@@ -45,6 +46,7 @@ class CartController extends GetxController {
             img: product.img,
             isExist: true,
             time: DateTime.now().toString(),
+            product: product,
           );
         });
       } else {
@@ -52,6 +54,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    update();
   }
 
   bool existsInCart(ProductModel product) {
@@ -81,4 +84,6 @@ class CartController extends GetxController {
     });
     return totalQuantity;
   }
+
+  List<CartModel> get getItems => _items.values.toList();
 }

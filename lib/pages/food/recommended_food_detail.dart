@@ -39,12 +39,16 @@ class RecommendedFoodDetail extends StatelessWidget {
                   child: const AppIcon(icon: Icons.clear),
                 ),
                 GetBuilder<RecommendedProductController>(
-                    builder: ((controller) => Stack(
+                    builder: ((controller) => GestureDetector(
+                        onTap: () {
+                          if (controller.totalItems > 0) {
+                            Get.toNamed(RouteHelper.getCart());
+                          }
+                        },
+                        child: Stack(
                           children: [
                             const AppIcon(icon: Icons.shopping_cart_outlined),
-                            Get.find<RecommendedProductController>()
-                                        .totalItems >=
-                                    1
+                            controller.totalItems >= 1
                                 ? Positioned(
                                     right: 0,
                                     top: 0,
@@ -54,20 +58,17 @@ class RecommendedFoodDetail extends StatelessWidget {
                                         iconcolor: Colors.transparent,
                                         backgroundColor: AppColors.mainColor))
                                 : Container(),
-                            Get.find<RecommendedProductController>()
-                                        .totalItems >=
-                                    1
+                            controller.totalItems >= 1
                                 ? Positioned(
                                     right: Dimensions.width5 / 2,
                                     top: Dimensions.height5 / 2,
                                     child: BigText(
-                                        text:
-                                            '${Get.find<RecommendedProductController>().totalItems}',
+                                        text: '${controller.totalItems}',
                                         size: Dimensions.font12,
                                         color: Colors.white))
                                 : Container(),
                           ],
-                        ))),
+                        )))),
               ],
             ),
             bottom: PreferredSize(
