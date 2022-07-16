@@ -8,6 +8,7 @@ import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text.dart';
 import 'package:food_app/widgets/food_info_column.dart';
+import 'package:food_app/widgets/small_text.dart';
 import 'package:get/get.dart';
 import 'package:food_app/utils/constants.dart';
 
@@ -53,7 +54,32 @@ class PopularFoodDetail extends StatelessWidget {
                   },
                   child: const AppIcon(icon: Icons.arrow_back_ios_new),
                 ),
-                const AppIcon(icon: Icons.shopping_cart_outlined),
+                GetBuilder<PopularProductController>(
+                    builder: ((controller) => Stack(
+                          children: [
+                            const AppIcon(icon: Icons.shopping_cart_outlined),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: AppIcon(
+                                        icon: Icons.circle,
+                                        size: Dimensions.height20,
+                                        iconcolor: Colors.transparent,
+                                        backgroundColor: AppColors.mainColor))
+                                : Container(),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: Dimensions.width5 / 2,
+                                    top: Dimensions.height5 / 2,
+                                    child: BigText(
+                                        text:
+                                            '${Get.find<PopularProductController>().totalItems}',
+                                        size: Dimensions.font12,
+                                        color: Colors.white))
+                                : Container(),
+                          ],
+                        )))
               ],
             ),
           ),
