@@ -140,11 +140,12 @@ class PopularFoodDetail extends StatelessWidget {
                         vertical: Dimensions.height20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: AppColors.maincolor,
+                      color: AppColors.mainColor,
                     ),
                     child: BigText(
-                        text:
-                            "₹${(product.price!) * popularProduct.inCartItems} | Add to Cart",
+                        text: (popularProduct.inCartItems == 0)
+                            ? "₹${(popularProduct.quantity * product.price!)} | Add to Cart"
+                            : "₹${(popularProduct.inCartItems * product.price!)} | Update Cart",
                         color: Colors.white),
                   ),
                 )

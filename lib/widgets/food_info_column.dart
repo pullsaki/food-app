@@ -23,7 +23,7 @@ class FoodInfoColumn extends StatelessWidget {
               children: List.generate(
                   5,
                   (index) => Icon(Icons.star,
-                      color: AppColors.maincolor, size: Dimensions.height15)),
+                      color: AppColors.mainColor, size: Dimensions.height15)),
             ),
             SizedBox(width: Dimensions.width10),
             SmallText(text: "4.5"),

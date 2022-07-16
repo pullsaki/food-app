@@ -49,7 +49,7 @@ class CartController extends GetxController {
         });
       } else {
         Get.snackbar("Item count", "You should add atleast 1 item in the cart!",
-            backgroundColor: AppColors.maincolor, colorText: Colors.white);
+            backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
   }

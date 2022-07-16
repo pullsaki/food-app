@@ -57,7 +57,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         return _buildPageItem(
                             index, popularProducts.popularProductList[index]);
                       })))
-              : const CircularProgressIndicator(color: AppColors.maincolor);
+              : const CircularProgressIndicator(color: AppColors.mainColor);
         }),
         GetBuilder<PopularProductController>(builder: (popularProducts) {
           return DotsIndicator(
@@ -66,7 +66,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 : popularProducts.popularProductList.length,
             position: _currPageValue,
             decorator: DotsDecorator(
-                activeColor: AppColors.maincolor,
+                activeColor: AppColors.mainColor,
                 size: Size.square(Dimensions.height10),
                 activeSize: Size(Dimensions.height20, Dimensions.height10),
                 activeShape: RoundedRectangleBorder(
@@ -177,7 +177,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               )
                             ])));
                   })
-              : const CircularProgressIndicator(color: AppColors.maincolor);
+              : const CircularProgressIndicator(color: AppColors.mainColor);
         })
       ],
     );

@@ -17,7 +17,7 @@ class IconTextRow extends StatelessWidget {
         IconTextWidget(
             icon: Icons.location_on,
             text: "1.7 km",
-            iconColor: AppColors.maincolor),
+            iconColor: AppColors.mainColor),
         IconTextWidget(
             icon: Icons.access_time_rounded,
             text: "32min",

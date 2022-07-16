@@ -91,7 +91,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 AppIcon(
                     iconSize: Dimensions.iconSize24,
                     icon: Icons.remove,
-                    backgroundColor: AppColors.maincolor,
+                    backgroundColor: AppColors.mainColor,
                     iconcolor: Colors.white),
                 BigText(
                     text: "₹${recommendedProduct.price} X 0",
@@ -101,7 +101,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 AppIcon(
                     iconSize: Dimensions.iconSize24,
                     icon: Icons.add,
-                    backgroundColor: AppColors.maincolor,
+                    backgroundColor: AppColors.mainColor,
                     iconcolor: Colors.white),
               ],
             ),
@@ -127,14 +127,14 @@ class RecommendedFoodDetail extends StatelessWidget {
                             BorderRadius.circular(Dimensions.radius20),
                         color: Colors.white),
                     child:
-                        const Icon(Icons.favorite, color: AppColors.maincolor)),
+                        const Icon(Icons.favorite, color: AppColors.mainColor)),
                 Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: Dimensions.width20,
                       vertical: Dimensions.height20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: AppColors.maincolor,
+                    color: AppColors.mainColor,
                   ),
                   child: BigText(
                       text: "₹ ${recommendedProduct.price}| Add to Cart",

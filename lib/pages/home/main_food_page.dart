@@ -30,7 +30,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 children: [
                   BigText(
                     text: "India",
-                    color: AppColors.maincolor,
+                    color: AppColors.mainColor,
                   ),
                   Row(
                     children: [
@@ -46,7 +46,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 height: Dimensions.height45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius15),
-                  color: AppColors.maincolor,
+                  color: AppColors.mainColor,
                 ),
                 child: Icon(
                   Icons.search,
